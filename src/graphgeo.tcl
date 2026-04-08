@@ -1504,15 +1504,16 @@ proc GeoGraphFind {w} {
 proc GeoPng {this} {
 	global pngTypes geoEasyMsg lastDir
 
-	if {[catch {package require img::window} msg]} {
-        geo_dialog .msg $geoEasyMsg(error) "$geoEasyMsg(nopng)" \
-            error 0 OK
-		return
-	}
+#	if {[catch {package require img::window} msg]} {
+#        geo_dialog .msg $geoEasyMsg(error) "$geoEasyMsg(nopng)" \
+#            error 0 OK
+#		return
+#	}
     set filen [string trim [tk_getSaveFile -filetypes $pngTypes \
         -defaultextension ".png" -initialdir $lastDir]]
 	if {[string length $filen]} {
-		set im [image create photo -format window -data $this.map.c]
-		catch {$im write $filen}
+#		set im [image create photo -format window -data $this.map.c]
+#		catch {$im write $filen}
+        $this.map.c postscript -colormode color -file $filen
 	}
 }

@@ -24,7 +24,7 @@ proc GeoDXF {} {
 	global lastDir
 	global reg
 	global rp dxpn dypn dxz dyz spn sz pon zon slay pnlay zlay p3d pd zdec \
-		pcodelayer xzplane useblock
+		pcodelayer xzplane useblock dxc dyc sc
 	global contourInterval contourDxf contourLayer contour3Dface
 	global cadTypes
 
@@ -38,6 +38,8 @@ proc GeoDXF {} {
 		if {[regexp $reg(2) $rp] == 0 || [regexp $reg(2) $spn] == 0 || \
 			[regexp $reg(2) $dxpn] == 0 || [regexp $reg(2) $dypn] == 0 || \
 			[regexp $reg(2) $dxz] == 0 || [regexp $reg(2) $dyz] == 0 || \
+			[regexp $reg(2) $dxc] == 0 || [regexp $reg(2) $dyc] == 0 || \
+            [regexp $reg(2) $sc] == 0 || \
 			[regexp $reg(2) $sz] == 0 || [regexp $reg(1) $zdec] == 0 || \
 			[regexp $reg(2) $contourInterval] == 0} {
 
@@ -64,7 +66,8 @@ proc DXFout {fn} {
 	global geoLoaded geoEasyMsg
 	global pd
 	global rp dxpn dypn dxz dyz spn sz pon zon slay pnlay zlay p3d zdec \
-		pcodelayer xzplane useblock addlines
+		pcodelayer xzplane useblock addlines \
+        con clay dxc dyc sc
     global contourInterval contourDxf contourLayer contour3Dface
 	global regLineStart regLineCont regLineEnd regLine regLineClose
 
@@ -313,7 +316,8 @@ proc DXFout {fn} {
 #	@param pn point name
 proc DXFout1 {fd pn} {
 	global rp dxpn dypn dxz dyz spn sz pon zon slay pnlay zlay p3d zdec \
-		pcodelayer xzplane useblock
+		pcodelayer xzplane useblock \
+        con clay dxc dyc sc
     global decimals
 
 	set buf [GetCoord $pn {38 37}]
@@ -392,6 +396,15 @@ proc DXFout1 {fd pn} {
 			puts $fd "  0\nTEXT\n  8\n$layer1\n 10\n$wx\n 20\n$wy\n 40\n$spn\n  1\n$pn"
 		}
 	}
+	if {$con && ! $useblock && [string length $code]} {
+		set wx [format "%.${decimals}f" [expr {$x + $dxc}]]
+		set wy [format "%.${decimals}f" [expr {$y + $dyc}]]
+		if {$p3d && [string length $z]} {
+			puts $fd "  0\nTEXT\n  8\n$clay\n 10\n$wx\n 20\n$wy\n 30\n$z\n 40\n$sc\n  1\n$code"
+		} else {
+			puts $fd "  0\nTEXT\n  8\n$clay\n 10\n$wx\n 20\n$wy\n 40\n$sc\n  1\n$code"
+		}
+	}
 }
 
 #
@@ -399,7 +412,8 @@ proc DXFout1 {fd pn} {
 proc DXFparams {} {
 	global geoEasyMsg
 	global rp dxpn dypn dxz dyz spn sz pon zon slay pnlay zlay p3d pd zdec \
-		pcodelayer xzplane useblock addlines
+		pcodelayer xzplane useblock addlines \
+        con clay dxc dyc sc
 	global contourInterval contourDxf contourLayer contour3Dface
 	global buttonid
 
@@ -419,6 +433,7 @@ proc DXFparams {} {
 	wm transient $this [winfo toplevel $w]
 	catch {wm attribute $this -topmost}
 
+    ttk::separator $this.sep -orient vertical
 	label $this.lslay -text $geoEasyMsg(layer1)
 	label $this.lr -text $geoEasyMsg(ssize)
 	checkbutton $this.pcode -text $geoEasyMsg(pcode) -variable pcodelayer
@@ -430,6 +445,8 @@ proc DXFparams {} {
 	checkbutton $this.pon -text $geoEasyMsg(pnon) -variable pon \
 		-command "p_check $this \$pon"
 	checkbutton $this.lines -text $geoEasyMsg(addlines) -variable addlines
+	checkbutton $this.con -text $geoEasyMsg(pcon) -variable con \
+		-command "pc_check $this \$con"
 	label $this.lplay -text $geoEasyMsg(layer2)
 	label $this.ldxpn -text $geoEasyMsg(dxpn)
 	label $this.ldypn -text $geoEasyMsg(dypn)
@@ -441,26 +458,10 @@ proc DXFparams {} {
 	label $this.ldyz -text $geoEasyMsg(dyz)
 	label $this.lsz -text $geoEasyMsg(sz)
 	label $this.lzdec -text $geoEasyMsg(zdec)
-
-	grid $this.lslay -row 0 -column 0 -sticky w
-	grid $this.lr -row 1 -column 0 -sticky w
-	grid $this.pcode -row 2 -column 0 -sticky w
-	grid $this.lines -row 2 -column 1 -sticky w
-	grid $this.xz -row 3 -column 0 -sticky w
-	grid $this.useblock -row 3 -column 1 -sticky w
-	grid $this.pd -row 4 -column 0 -sticky w
-	grid $this.p3d -row 4 -column 1 -sticky w
-	grid $this.pon -row 5 -column 0 -sticky w -columnspan 2
-	grid $this.lplay -row 6 -column 0 -sticky w
-	grid $this.ldxpn -row 7 -column 0 -sticky w
-	grid $this.ldypn -row 8 -column 0 -sticky w
-	grid $this.lspn -row 9 -column 0 -sticky w
-	grid $this.zon -row 10 -column 0 -sticky w
-	grid $this.lzlay -row 11 -column 0 -sticky w -columnspan 2
-	grid $this.ldxz -row 12 -column 0 -sticky w
-	grid $this.ldyz -row 13 -column 0 -sticky w
-	grid $this.lsz -row 14 -column 0 -sticky w
-	grid $this.lzdec -row 15 -column 0 -sticky w
+	label $this.lclay -text $geoEasyMsg(layer4)
+	label $this.ldxc -text $geoEasyMsg(dxc)
+	label $this.ldyc -text $geoEasyMsg(dyc)
+	label $this.lsc -text $geoEasyMsg(sc)
 
 	entry $this.slay -textvariable slay -width 10
 	entry $this.r -textvariable rp -width 10 -justify right
@@ -473,18 +474,10 @@ proc DXFparams {} {
 	entry $this.dyz -textvariable dyz -width 10 -justify right
 	entry $this.sz -textvariable sz -width 10 -justify right
 	entry $this.zdec -textvariable zdec -width 10 -justify right
-
-	grid $this.slay -row 0 -column 1 -sticky w
-	grid $this.r -row 1 -column 1 -sticky w
-	grid $this.pnlay -row 6 -column 1 -sticky w
-	grid $this.dxpn -row 7 -column 1 -sticky w
-	grid $this.dypn -row 8 -column 1 -sticky w
-	grid $this.spn -row 9 -column 1 -sticky w
-	grid $this.zlay -row 11 -column 1 -sticky w
-	grid $this.dxz -row 12 -column 1 -sticky w
-	grid $this.dyz -row 13 -column 1 -sticky w
-	grid $this.sz -row 14 -column 1 -sticky w
-	grid $this.zdec -row 15 -column 1 -sticky w
+	entry $this.clay -textvariable clay -width 10
+	entry $this.dxc -textvariable dxc -width 10 -justify right
+	entry $this.dyc -textvariable dyc -width 10 -justify right
+	entry $this.sc -textvariable sc -width 10 -justify right
 
 	# add contour options
 	checkbutton $this.ldxf -text $geoEasyMsg(contourpar) -variable contourDxf \
@@ -495,24 +488,83 @@ proc DXFparams {} {
 		-variable contourLayer
 	checkbutton $this.l3d -text $geoEasyMsg(contour3Dface) \
 		-variable contour3Dface
-	grid $this.ldxf -row 16 -column 0 -sticky w -columnspan 2
-	grid $this.lcontourinterval -row 17 -column 0 -sticky w
-	grid $this.contourentry -row 17 -column 1 -sticky w
-	grid $this.llay -row 18 -column 0 -columnspan 2 -sticky e
-	grid $this.l3d -row 19 -column 0 -columnspan 2 -sticky e
 
 	button $this.exit -text $geoEasyMsg(ok) \
 		-command "destroy $this; set buttonid 0"
 	button $this.cancel -text $geoEasyMsg(cancel) \
 		-command "destroy $this; set buttonid 1"
-	grid $this.exit -row 20 -column 0
-	grid $this.cancel -row 20 -column 1
+
+	grid $this.lslay -row 0 -column 0 -sticky w
+	grid $this.slay -row 0 -column 1 -sticky w
+    grid $this.sep -row 0 -column 2 -sticky ns -padx 5
+	grid $this.pon -row 0 -column 3 -sticky w -columnspan 2
+	grid $this.lr -row 1 -column 0 -sticky w
+	grid $this.r -row 1 -column 1 -sticky w
+    grid $this.sep -row 1 -column 2 -sticky ns -padx 5
+	grid $this.lplay -row 1 -column 3 -sticky w
+	grid $this.pnlay -row 1 -column 4 -sticky w
+
+	grid $this.pcode -row 2 -column 0 -sticky w
+	grid $this.lines -row 2 -column 1 -sticky w
+    grid $this.sep -row 2 -column 2 -sticky ns -padx 5
+	grid $this.ldxpn -row 2 -column 3 -sticky w
+	grid $this.dxpn -row 2 -column 4 -sticky w
+
+	grid $this.xz -row 3 -column 0 -sticky w
+	grid $this.useblock -row 3 -column 1 -sticky w
+    grid $this.sep -row 3 -column 2 -sticky ns -padx 5
+	grid $this.ldypn -row 3 -column 3 -sticky w
+	grid $this.dypn -row 3 -column 4 -sticky w
+
+
+	grid $this.pd -row 4 -column 0 -sticky w
+	grid $this.p3d -row 4 -column 1 -sticky w
+    grid $this.sep -row 4 -column 2 -sticky ns -padx 5
+	grid $this.lspn -row 4 -column 3 -sticky w
+	grid $this.spn -row 4 -column 4 -sticky w
+	grid $this.zon -row 5 -column 0 -sticky w -columnspan 2
+    grid $this.sep -row 5 -column 2 -sticky ns -padx 5
+    grid $this.con -row 5 -column 3  -sticky w -columnspan 2
+	grid $this.lzlay -row 6 -column 0 -sticky w
+	grid $this.zlay -row 6 -column 1 -sticky w
+    grid $this.sep -row 6 -column 2 -sticky ns -padx 5
+	grid $this.lclay -row 6 -column 3 -sticky w
+	grid $this.clay -row 6 -column 4 -sticky w
+
+	grid $this.ldxz -row 7 -column 0 -sticky w
+	grid $this.dxz -row 7 -column 1 -sticky w
+    grid $this.sep -row 7 -column 2 -sticky ns -padx 5
+	grid $this.ldxc -row 7 -column 3 -sticky w
+	grid $this.dxc -row 7 -column 4 -sticky w
+	grid $this.ldyz -row 8 -column 0 -sticky w
+	grid $this.dyz -row 8 -column 1 -sticky w
+    grid $this.sep -row 8 -column 2 -sticky ns -padx 5
+	grid $this.ldyc -row 8 -column 3 -sticky w
+	grid $this.dyc -row 8 -column 4 -sticky w
+	grid $this.lsz -row 9 -column 0 -sticky w
+	grid $this.sz -row 9 -column 1 -sticky w
+    grid $this.sep -row 9 -column 2 -sticky ns -padx 5
+	grid $this.lsc -row 9 -column 3 -sticky w
+	grid $this.sc -row 9 -column 4 -sticky w
+	grid $this.lzdec -row 10 -column 0 -sticky w
+	grid $this.zdec -row 10 -column 1 -sticky w
+    grid $this.sep -row 10 -column 2 -sticky ns -padx 5
+
+	grid $this.ldxf -row 11 -column 0 -sticky w -columnspan 2
+	grid $this.lcontourinterval -row 12 -column 0 -sticky w
+	grid $this.contourentry -row 12 -column 1 -sticky w
+	grid $this.llay -row 13 -column 0 -columnspan 2 -sticky e
+	grid $this.l3d -row 14 -column 0 -columnspan 2 -sticky e
+
+	grid $this.exit -row 15 -column 0
+	grid $this.cancel -row 15 -column 1
 	tkwait visibility $this
 	CenterWnd $this
 	grab set $this
 
 	p_check $this $pon
 	z_check $this $zon
+    pc_check $this $con
 	c_check $this $contourDxf
 }
 
@@ -572,6 +624,26 @@ proc p_check {this flag} {
 		$this.dxpn configure -state disabled -foreground grey
 		$this.dypn configure -state disabled -foreground grey
 		$this.spn configure -state disabled -foreground grey
+	}
+}
+
+#
+#	Change enabled/disables state based on point number on/off
+#	Used by DXF/SVG export
+#	@param this
+#	@param flag
+proc pc_check {this flag} {
+
+	if {$flag} {
+		catch {$this.clay configure -state normal -foreground black}
+		$this.dxc configure -state normal -foreground black
+		$this.dyc configure -state normal -foreground black
+		$this.sc configure -state normal -foreground black
+	} else {
+		catch {$this.clay configure -state disabled -foreground grey}
+		$this.dxc configure -state disabled -foreground grey
+		$this.dyc configure -state disabled -foreground grey
+		$this.sc configure -state disabled -foreground grey
 	}
 }
 

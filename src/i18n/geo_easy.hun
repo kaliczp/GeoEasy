@@ -112,7 +112,7 @@ set cadTypes {{"AutoCAD DXF" {.dxf}}
 set svgTypes {{"Scalable Vector Graphics" {.svg}}
 }
 
-set pngTypes {{"PNG kép" {.png}}
+set pngTypes {{"Postscript kép" {.eps}}
 }
 
 set mskTypes {{"GeoEasy maszk" {.msk}}
@@ -359,7 +359,7 @@ set geoEasyMsg(menuGraLines)	"Vonalak"
 set geoEasyMsg(menuGraZoomAll)	"Mindent megmutat"
 set geoEasyMsg(menuGraDXF)		"DXF output ..."
 set geoEasyMsg(menuGraSVG)      "SVG output ..."
-set geoEasyMsg(menuGraPng)      "PNG export ..."
+set geoEasyMsg(menuGraPng)      "Postscript export ..."
 set geoEasyMsg(menuGraClose)	"Lezár"
 set geoEasyMsg(menuGraCal)		"Számítások"
 set geoEasyMsg(menuCalTra)		"Sokszögelés"
@@ -514,7 +514,7 @@ set geoEasyMsg(meanp)       "Középpont"
 set geoEasyMsg(centroid)    "Súlypont"
 set geoEasyMsg(endp)		"Végpont?"
 set geoEasyMsg(maxGr)		"Csak 10 grafikus ablak lehet nyitva!"
-set geoEasyMsg(nopng)       "Png export nem nem érhető el"
+set geoEasyMsg(nopng)       "Png export nem érhető el"
 set geoEasyMsg(orist)		"Nincs elég ismert (y, x, z), tájékozott álláspont"
 
 set geoEasyMsg(linreg)		"Nem számítható a pontokra kiegyenlítő egyenes"
@@ -614,6 +614,12 @@ set geoEasyMsg(dyz)			"Y eltolás"
 set geoEasyMsg(zdec)		"Tizedesek"
 set geoEasyMsg(spn)			"Felirat méret"
 set geoEasyMsg(sz)			"Felirat méret"
+set geoEasyMsg(pcon)        "Kód feliratok"
+set geoEasyMsg(layer4)      "Réteg neve"
+set geoEasyMsg(dxc)         "X eltolás"
+set geoEasyMsg(dyc)         "Y eltolás"
+set geoEasyMsg(sc)          "Felirat méret"
+
 set geoEasyMsg(layerlist)	"Réteg lista ..."
 set geoEasyMsg(blocklist)	"Blokk lista ..."
 set geoEasyMsg(attrlist)	"Attr. lista ..."

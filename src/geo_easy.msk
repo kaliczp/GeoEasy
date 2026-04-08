@@ -1,9 +1,9 @@
 # supported languages
 global geoLangs
-array set geoLangs {hun {hu} eng {en us} ger {ge de} rus {ru} cze {cz} es {es} pl {pl} aze {aze}}
+array set geoLangs {hun {hu} eng {en us} ger {ge de} rus {ru} cze {cz} es {es} pl {pl} aze {aze} krd {krd}}
 # language codes for windows
 global langCodes
-array set langCodes {"040E" hun "0409" eng "0407" ger "0419" rus "0405" cze "040A" es "0415" pl "042c" aze}
+array set langCodes {"040E" hun "0409" eng "0407" ger "0419" rus "0405" cze "040A" es "0415" pl "042c" aze "0492" krd}
 # GUI language change default to hun/eng/ger/... to set GUI language other than OS lang
 global geoLang
 set geoLang {default}
@@ -104,7 +104,8 @@ set cs2csProg {./cs2cs}
 # dxf output parameters
 #
 global rp dxpn dypn dxz dyz spn sz pon zon slay pnlay zlay p3d pd zdec \
-    pcodelayer bname battr block ptext xzplane useblock addlines
+    pcodelayer bname battr block ptext xzplane useblock addlines \
+    con clay dxc dyc sc
 set p3d {0}
 set pd {0}
 set pon {1}
@@ -124,6 +125,11 @@ set pcodelayer {0}
 set xzplane {0}
 set useblock {0}
 set addlines {0}
+set con {0}
+set clay {CN}
+set dxc {-2.0}
+set dyc {-0.5}
+set sc {1.5}
 # html browser (UNIX)
 global browser
 set browser {}

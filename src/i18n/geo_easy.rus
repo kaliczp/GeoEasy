@@ -112,7 +112,7 @@ set cadTypes {{"AutoCAD DXF" {.dxf}}
 set svgTypes {{"Scalable Vector Graphics" {.svg}}
 }
 
-set pngTypes {{"PNG изображение" {.png}}
+set pngTypes {{"Postscript изображение" {.eps}}
 }				;# TODO
 
 set mskTypes {{"GeoEasy mask" {.msk}}
@@ -360,7 +360,7 @@ set geoEasyMsg(menuGraUsed)     "Только наблюдаемые точки"
 set geoEasyMsg(menuGraZoomAll)	"Увеличить все"
 set geoEasyMsg(menuGraDXF)		"DXF экспорт ..."
 set geoEasyMsg(menuGraSVG)      "SVG output ..."			;# TODO
-set geoEasyMsg(menuGraPng)      "PNG export ..."			;# TODO
+set geoEasyMsg(menuGraPng)      "Postscript export ..."			;# TODO
 set geoEasyMsg(menuGraClose)	"Закрыть"
 set geoEasyMsg(menuGraCal)		"Вычисления"
 set geoEasyMsg(menuCalTra)		"Traversing"
@@ -611,6 +611,12 @@ set geoEasyMsg(dyz)			"Y сдвиг"
 set geoEasyMsg(zdec)		"Десятичные числа"
 set geoEasyMsg(spn)			"Размер текста"
 set geoEasyMsg(sz)			"Размер текста"
+set geoEasyMsg(pcon)        "Code labels"               ;# TODO
+set geoEasyMsg(layer4)      "Имя слоя"
+set geoEasyMsg(dxc)         "X сдвиг"
+set geoEasyMsg(dyc)         "Y сдвиг"
+set geoEasyMsg(sc)          "Размер текста"
+
 set geoEasyMsg(layerlist)	"Список слоев ..."
 set geoEasyMsg(blocklist)	"Список блоков ..."
 set geoEasyMsg(attrlist)	"Список атрибутов ..."

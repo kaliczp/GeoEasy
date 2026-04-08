@@ -112,7 +112,7 @@ set cadTypes {{"AutoCAD DXF" {.dxf}}
 set svgTypes {{"Scalable Vector Graphics" {.svg}}
 }
 
-set pngTypes {{"PNG image" {.png}}
+set pngTypes {{"Postscript image" {.eps}}
 }
 
 set mskTypes {{"GeoEasy mask" {.msk}}
@@ -361,7 +361,7 @@ set geoEasyMsg(menuGraUsed)		"Sadəcə müşahidə olunan nöqtələr"
 set geoEasyMsg(menuGraZoomAll)	"Hamısını böyüt"
 set geoEasyMsg(menuGraDXF)		"DXF output ..."
 set geoEasyMsg(menuGraSVG)		"SVG output ..."
-set geoEasyMsg(menuGraPng)		"PNG ixrac ..."
+set geoEasyMsg(menuGraPng)		"Postscript ixrac ..."
 set geoEasyMsg(menuGraClose)	"Bağla"
 set geoEasyMsg(menuGraCal)		"Hesabla"
 set geoEasyMsg(menuCalTra)		"Geodezik gediş"
@@ -612,6 +612,12 @@ set geoEasyMsg(dyz)			"Y sürüşməsi"
 set geoEasyMsg(zdec)		"Onluqlar"
 set geoEasyMsg(spn)			"Mətn ölçüsü"
 set geoEasyMsg(sz)			"Mətn ölçüsü"
+set geoEasyMsg(pcon)        "Code labels"               ;# TODO
+set geoEasyMsg(layer4)      "Təbəqə adı"
+set geoEasyMsg(dxc)         "X sürüşməsi"
+set geoEasyMsg(dyc)         "Y sürüşməsi"
+set geoEasyMsg(sc)          "Mətn ölçüsü"
+
 set geoEasyMsg(layerlist)	"Təbəqə siyasıhı ..."
 set geoEasyMsg(blocklist)	"Blok siyasıhı ..."
 set geoEasyMsg(attrlist)	"Atribut siyasıhı ..."

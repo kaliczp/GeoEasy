@@ -1966,7 +1966,8 @@ proc GeoSaveParams {{fn "geo_easy.msk"}} {
 	global maskRows
 	global regLineStart regLineCont regLineEnd regLine regLineClose
     global rp dxpn dypn dxz dyz spn sz pon zon slay pnlay zlay p3d pd zdec \
-	        pcodelayer bname battr block ptext xzplane useblock addlines
+	        pcodelayer bname battr block ptext xzplane useblock addlines \
+            con clay dxc dyc sc
 	global polyStyle
 	global x3dColor
 	global gamaProg gamaConf gamaAngles gamaTol dirLimit gamaShortOut gamaSvgOut gamaXmlOut

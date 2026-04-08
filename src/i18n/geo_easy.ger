@@ -110,7 +110,7 @@ set cadTypes {{"AutoCAD DXF" {.dxf}}
 set svgTypes {{"Scalable Vector Graphics" {.svg}}
 }
 
-set pngTypes {{"PNG image" {.png}}
+set pngTypes {{"Postscript image" {.eps}}
 }				;# TODO
 
 set mskTypes {{"GeoEasy Eingabemaske" {.msk}}
@@ -357,7 +357,7 @@ set geoEasyMsg(menuGraUsed)		"Nur gemessene Punkte"
 set geoEasyMsg(menuGraZoomAll)	"Zeige alles"
 set geoEasyMsg(menuGraDXF)		"DXF output ..."
 set geoEasyMsg(menuGraSVG)      "SVG output ..."			;# TODO
-set geoEasyMsg(menuGraPng)      "PNG export ..."			;# TODO
+set geoEasyMsg(menuGraPng)      "Postscript export ..."			;# TODO
 set geoEasyMsg(menuGraClose)	"Abschliessen"	;# "Fenster schliessen"
 set geoEasyMsg(menuGraCal)		"Berechnungen"
 set geoEasyMsg(menuCalTra)		"Polygonzug in der Lage"
@@ -610,6 +610,12 @@ set geoEasyMsg(dyz)			"Y-Verschiebung"
 set geoEasyMsg(zdec)		"Nachkommastellen"
 set geoEasyMsg(spn)			"Beschriftungsgrösse"
 set geoEasyMsg(sz)			"Beschriftungsgrösse"
+set geoEasyMsg(pcon)        "Code labels"                   ;# TODO
+set geoEasyMsg(layer4)      "Layerbezeichnung"
+set geoEasyMsg(dxc)         "X-Verschiebung"
+set geoEasyMsg(dyc)         "Y-Verschiebung"
+set geoEasyMsg(sc)          "Beschriftungsgrösse"
+
 set geoEasyMsg(layerlist)	"Layerliste ..."
 set geoEasyMsg(blocklist)	"Blockliste ..."
 set geoEasyMsg(attrlist)	"Attributenliste ..."

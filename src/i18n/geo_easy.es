@@ -112,7 +112,7 @@ set cadTypes {{"AutoCAD DXF" {.dxf}}
 set svgTypes {{"Scalable Vector Graphics" {.svg}}
 }
 
-set pngTypes {{"PNG image" {.png}}
+set pngTypes {{"Postscript image" {.eps}}
 }			;# TODO
 
 set mskTypes {{"GeoEasy mascara" {.msk}}
@@ -361,7 +361,7 @@ set geoEasyMsg(menuGraUsed)		"S\u00F3lo puntos observados"
 set geoEasyMsg(menuGraZoomAll)	"Ampliar todo"
 set geoEasyMsg(menuGraDXF)		"Salida DXF ..."
 set geoEasyMsg(menuGraSVG)      "SVG output ..."		;# TODO
-set geoEasyMsg(menuGraPng)      "PNG export ..."		;# TODO
+set geoEasyMsg(menuGraPng)      "Postscript export ..."		;# TODO
 set geoEasyMsg(menuGraClose)	"Cerrar"
 set geoEasyMsg(menuGraCal)		"Calcular"
 set geoEasyMsg(menuCalTra)		"Medici\u00F3n de pol\u00EDgonos"
@@ -612,6 +612,12 @@ set geoEasyMsg(dyz)			"Cambio de Y"
 set geoEasyMsg(zdec)		"Decimales"
 set geoEasyMsg(spn)			"Tama\u00F1o de texto"
 set geoEasyMsg(sz)			"Tama\u00F1o de texto"
+set geoEasyMsg(pcon)        "Code labels"                           ;# TODO
+set geoEasyMsg(layer4)      "Capa nombre"
+set geoEasyMsg(dxc)         "Cambio de X"
+set geoEasyMsg(dyc)         "Cambio de Y"
+set geoEasyMsg(sc)          "Tama\u00F1o de texto"
+
 set geoEasyMsg(layerlist)	"Lista capas ..."
 set geoEasyMsg(blocklist)	"Lista bloques ..."
 set geoEasyMsg(attrlist)	"Lista atributos ..."

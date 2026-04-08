@@ -112,7 +112,7 @@ set cadTypes {{"AutoCAD DXF" {.dxf}}
 set svgTypes {{"Scalable Vector Graphics" {.svg}}
 }
 
-set pngTypes {{"PNG image" {.png}}
+set pngTypes {{"Postscript image" {.eps}}
 }
 
 set mskTypes {{"GeoEasy mask" {.msk}}
@@ -361,7 +361,7 @@ set geoEasyMsg(menuGraUsed)		"Tylko punkty obserwowane"
 set geoEasyMsg(menuGraZoomAll)	"Pokaż wszystko"
 set geoEasyMsg(menuGraDXF)		"eksport DXF ..."
 set geoEasyMsg(menuGraSVG)		"eksport SVG ..."
-set geoEasyMsg(menuGraPng)		"eksport PNG ..."
+set geoEasyMsg(menuGraPng)		"eksport Postscript ..."
 set geoEasyMsg(menuGraClose)	"Zamknij"
 set geoEasyMsg(menuGraCal)		"Obliczenia"
 set geoEasyMsg(menuCalTra)		"Traversing"
@@ -612,6 +612,12 @@ set geoEasyMsg(dyz)			"Y shift"
 set geoEasyMsg(zdec)		"Decimals"
 set geoEasyMsg(spn)			"Text size"
 set geoEasyMsg(sz)			"Text size"
+set geoEasyMsg(pcon)        "Code labels"
+set geoEasyMsg(layer4)      "Layer name"
+set geoEasyMsg(dxc)         "X shift"
+set geoEasyMsg(dyc)         "Y shift"
+set geoEasyMsg(sc)          "Text size"
+
 set geoEasyMsg(layerlist)	"Layer list ..."
 set geoEasyMsg(blocklist)	"Block list ..."
 set geoEasyMsg(attrlist)	"Attr. list ..."
